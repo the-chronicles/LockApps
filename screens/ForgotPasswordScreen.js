@@ -18,7 +18,11 @@ const ForgotPasswordScreen = () => {
 
   const [email, setEmail] = useState({ value: "", error: "" });
 
-  const _onSendPressed = () => {
+  function nextHandler ()  {
+    navigation.navigate("SetPassword");
+  }
+
+  // const _onSendPressed = () => {
     // const emailError = emailValidator(email.value);
 
     // if (emailError) {
@@ -26,8 +30,8 @@ const ForgotPasswordScreen = () => {
     //   return;
     // }
 
-    navigation.navigate("CheckEmail");
-  };
+    // navigation.navigate("SetPassword");
+  // };
 
   return (
     <View style={styles.loginContainer}>
@@ -41,31 +45,14 @@ const ForgotPasswordScreen = () => {
         </SubText>
       </View>
 
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.inputTextContainer}
-          placeholder="Louis04real@gmail.com"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          autoCorrect={false}
-          returnKeyType="next"
-          value={email.value}
-          onChangeText={(text) => setEmail({ value: text, error: "" })}
-          error={!!email.error}
-          errorText={email.error}
-          autoCompleteType="email"
-          textContentType="emailAddress"
-        />
-      </View>
-
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
-          <PrimaryButton onPress={_onSendPressed}>Continue</PrimaryButton>
+          <PrimaryButton onPress={nextHandler}>Continue</PrimaryButton>
         </View>
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   loginContainer: {
@@ -109,4 +96,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(ForgotPasswordScreen);
+export default ForgotPasswordScreen;

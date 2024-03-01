@@ -8,6 +8,8 @@ import SignupScreen from "./screens/SignupScreen";
 import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
 import CheckEmail from "./screens/CheckEmail";
 import Animation from "./components/Animation";
+import SetPassword from "./screens/SetPassword";
+import ResetConfirmation from "./screens/ResetConfirmation";
 
 const Stack = createNativeStackNavigator();
 
@@ -57,6 +59,22 @@ export default function App() {
           }} />
           <Stack.Screen name="CheckEmail" component={CheckEmail} options={{
             headerTitle: "Check Mail",
+            headerTitleStyle: {
+              // fontFamily: "gilroy",
+              fontSize: 16,
+            },
+            headerTitleAlign: "center",
+          }} />
+          <Stack.Screen name="SetPassword" component={SetPassword} options={{
+            headerTitle: "Set Password",
+            headerTitleStyle: {
+              // fontFamily: "gilroy",
+              fontSize: 16,
+            },
+            headerTitleAlign: "center",
+          }} />
+          <Stack.Screen name="ResetConfirmPass" component={ResetConfirmation} options={{
+            headerTitle: "Confirmed",
             headerTitleStyle: {
               // fontFamily: "gilroy",
               fontSize: 16,
