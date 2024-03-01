@@ -6,6 +6,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { theme } from "./utils/theme";
 import SignupScreen from "./screens/SignupScreen";
 import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
+import CheckEmail from "./screens/CheckEmail";
+import Animation from "./components/Animation";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,6 +15,8 @@ export default function App() {
   return (
     <>
       <StatusBar style="auto" />
+
+      {/* <Animation /> */}
 
       <NavigationContainer>
         <Stack.Navigator
@@ -45,6 +49,14 @@ export default function App() {
           }} />
           <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{
             headerTitle: "Forgot Password",
+            headerTitleStyle: {
+              // fontFamily: "gilroy",
+              fontSize: 16,
+            },
+            headerTitleAlign: "center",
+          }} />
+          <Stack.Screen name="CheckEmail" component={CheckEmail} options={{
+            headerTitle: "Check Mail",
             headerTitleStyle: {
               // fontFamily: "gilroy",
               fontSize: 16,

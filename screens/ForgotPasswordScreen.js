@@ -19,14 +19,14 @@ const ForgotPasswordScreen = () => {
   const [email, setEmail] = useState({ value: "", error: "" });
 
   const _onSendPressed = () => {
-    const emailError = emailValidator(email.value);
+    // const emailError = emailValidator(email.value);
 
-    if (emailError) {
-      setEmail({ ...email, error: emailError });
-      return;
-    }
+    // if (emailError) {
+    //   setEmail({ ...email, error: emailError });
+    //   return;
+    // }
 
-    navigation.navigate("LoginScreen");
+    navigation.navigate("CheckEmail");
   };
 
   return (
