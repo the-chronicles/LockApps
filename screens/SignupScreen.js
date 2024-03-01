@@ -1,28 +1,34 @@
 import React, { memo, useState } from "react";
 import {
-  TouchableOpacity,
-  StyleSheet,
-  Text,
   View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
   TextInput,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native"; // Import useNavigation hook
-import Background from "../components/Background";
-import Logo from "../components/Logo";
+// import Background from "../components/Background";
+// import Logo from "../components/Logo";
 import Header from "../components/Header";
 import Button from "../components/Button";
 // import TextInput from "../components/TextInput";
-import BackButton from "../components/BackButton";
+// import BackButton from "../components/BackButton";
 import { theme } from "../utils/theme";
-import { emailValidator, passwordValidator } from "../utils/utils";
-import PrimaryButton from "../components/PrimaryButton";
-import SecondaryButton from "../components/SecondaryButton";
+// import { Navigation } from "../types";
+import {
+  emailValidator,
+  passwordValidator,
+  nameValidator,
+} from "../utils/utils";
+import { useNavigation } from "@react-navigation/native";
 import SubText from "../components/SubText";
+import SecondaryButton from "../components/SecondaryButton";
+import PrimaryButton from "../components/PrimaryButton";
 import { MaterialIcons } from "@expo/vector-icons";
 
-const LoginScreen = () => {
+const SignupScreen = () => {
   const navigation = useNavigation();
 
+  const [name, setName] = useState({ value: "", error: "" });
   const [email, setEmail] = useState({ value: "", error: "" });
   const [password, setPassword] = useState({ value: "", error: "" });
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -31,11 +37,13 @@ const LoginScreen = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  const _onLoginPressed = () => {
+  const _onSignUpPressed = () => {
+    const nameError = nameValidator(name.value);
     const emailError = emailValidator(email.value);
     const passwordError = passwordValidator(password.value);
 
-    if (emailError || passwordError) {
+    if (emailError || passwordError || nameError) {
+      setName({ ...name, error: nameError });
       setEmail({ ...email, error: emailError });
       setPassword({ ...password, error: passwordError });
       return;
@@ -48,27 +56,49 @@ const LoginScreen = () => {
     <>
       <View style={styles.loginContainer}>
         <View>
-          <Header>Welcome back</Header>
-          <SubText>
-            Please fill in your details to log into your account
-          </SubText>
+          <Header>Welcome to App</Header>
+          <SubText>Sign up and let's get you started </SubText>
         </View>
 
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.inputTextContainer}
+            placeholder="Username"
+            returnKeyType="next"
+            value={name.value}
+            onChangeText={(text) => setName({ value: text, error: "" })}
+            error={!!name.error}
+            errorText={name.error}
+          />
+
+          <TextInput
+            style={styles.inputTextContainer}
             placeholder="Louis04real@gmail.com"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            autoCorrect={false}
             returnKeyType="next"
             value={email.value}
             onChangeText={(text) => setEmail({ value: text, error: "" })}
             error={!!email.error}
             errorText={email.error}
+            autoCapitalize="none"
             autoCompleteType="email"
             textContentType="emailAddress"
+            keyboardType="email-address"
           />
+
+          <TextInput
+            style={styles.inputTextContainer}
+            placeholder="Unique code"
+            returnKeyType="next"
+            // value={email.value}
+            // onChangeText={(text) => setEmail({ value: text, error: "" })}
+            error={!!email.error}
+            errorText={email.error}
+            autoCapitalize="none"
+            autoCompleteType="email"
+            textContentType="oneTimeCode"
+            keyboardType="default"
+          />
+
           <View style={styles.passwordContainer}>
             <TextInput
               style={styles.inputText}
@@ -93,22 +123,20 @@ const LoginScreen = () => {
           </View>
         </View>
 
-        <View style={styles.forgotPassword}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("ForgotPassword")}
-          >
-            <Text style={styles.label}>Forgot your password?</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <Text style={styles.label}>
+            By signing up, you agree to the Terms of Service and Privacy Policy
+          </Text>
+        </TouchableOpacity>
 
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
-            <SecondaryButton onPress={() => navigation.navigate("SignUp")}>
-              Sign Up
-            </SecondaryButton>
+            <PrimaryButton onPress={_onSignUpPressed}>Sign Up</PrimaryButton>
           </View>
           <View style={styles.buttonContainer}>
-            <PrimaryButton onPress={_onLoginPressed}>Login</PrimaryButton>
+            <SecondaryButton onPress={() => navigation.navigate("Login")}>
+              Login
+            </SecondaryButton>
           </View>
         </View>
       </View>
@@ -122,27 +150,19 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.accent,
     padding: 20,
   },
-  forgotPassword: {
-    width: "100%",
-    alignItems: "flex-end",
-    marginBottom: 24,
-  },
-  buttonsContainer: {
-    flex: 1,
-    flexDirection: "row",
-  },
-  buttonContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-  },
-  forgotPassword: {
-    width: "100%",
-    alignItems: "flex-end",
-    marginBottom: 24,
-  },
   label: {
-    color: theme.colors.primary,
+    color: "#000000",
+  },
+  button: {
+    marginTop: 24,
+  },
+  row: {
+    flexDirection: "row",
+    marginTop: 4,
+  },
+  link: {
     fontWeight: "bold",
+    color: theme.colors.primary,
   },
   inputContainer: {
     marginTop: 32,
@@ -157,6 +177,14 @@ const styles = StyleSheet.create({
     borderColor: theme.colors.secondary,
     borderRadius: 30,
     backgroundColor: "white",
+  },
+  buttonsContainer: {
+    flex: 1,
+    flexDirection: "row",
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
   },
   inputText: {
     flex: 1,
@@ -178,4 +206,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default SignupScreen;
