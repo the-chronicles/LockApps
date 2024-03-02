@@ -13,7 +13,6 @@ import { theme } from "../utils/theme";
 import { useNavigation } from "@react-navigation/native";
 import SubText from "../components/SubText";
 import PrimaryButton from "../components/PrimaryButton";
-import SubTitle from "../components/Subtitle";
 
 const ResetConfirmation = () => {
   const navigation = useNavigation();
@@ -41,10 +40,10 @@ const ResetConfirmation = () => {
         <View style={styles.container}>
           <Image source={require("../assets/check.png")} />
           <Text style={styles.title}>Hi! Dami</Text>
-          <SubTitle>
+          <SubText>
             You have successfully reset your password, you can now login back
             into your App account
-          </SubTitle>
+          </SubText>
         </View>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>

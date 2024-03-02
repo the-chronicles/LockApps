@@ -3,9 +3,9 @@ import Header from "../components/Header";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, View } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
-import SubTitle from "../components/Subtitle";
 import { emailValidator } from "../utils/utils";
 import { theme } from "../utils/theme";
+import SubText from "../components/SubText";
 
 const CheckEmail = () => {
   const navigation = useNavigation();
@@ -26,10 +26,10 @@ const CheckEmail = () => {
       {/* Animation */}
       <View style={styles.contentContainer}>
       <Header>Your email will soon arrive</Header>
-      <SubTitle>
+      <SubText>
         Check your email mail@mail.com and follow the instructions to reset your
         password
-      </SubTitle>
+      </SubText>
       </View>
 
       <View style={styles.buttonsContainer}>
