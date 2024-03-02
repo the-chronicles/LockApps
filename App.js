@@ -18,9 +18,9 @@ export default function App() {
     <>
       <StatusBar style="auto" />
 
-      <Animation />
+      {/* <Animation /> */}
 
-      {/* <NavigationContainer>
+      <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
             headerStyle: { backgroundColor: theme.colors.accent },
@@ -82,7 +82,7 @@ export default function App() {
             headerTitleAlign: "center",
           }} />
         </Stack.Navigator>
-      </NavigationContainer> */}
+      </NavigationContainer>
     </>
   );
 }

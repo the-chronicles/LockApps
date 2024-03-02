@@ -78,7 +78,6 @@
 //   }
 // });
 
-
 // import React, { useEffect, useState } from "react";
 // import { keyframes, animate, stagger } from "popmotion";
 // import { Animated, StyleSheet, View } from "react-native";
@@ -105,12 +104,11 @@
 //         yoyo: Infinity,
 //       })
 //     );
-  
+
 //     stagger(actions, DURATION / COUNT).start((animations) => {
 //       setAnimations(animations);
 //     });
 //   };
-  
 
 //   return (
 //     <View style={styles.container}>
@@ -147,70 +145,86 @@
 //   }
 // });
 
-
-import { keyframes, stagger } from "popmotion";
-import { Animated, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useRef } from "react";
+import { Animated, StyleSheet, View, Text, Image } from "react-native";
 import { theme } from "../utils/theme";
 
 const COUNT = 5;
 const DURATION = 4000;
-const initialPhase = { scale: 0, opacity: 1 };
-const constructAnimations = () => [...Array(COUNT).keys()].map(() => initialPhase);
 
-function Animation() {
-  const [animations, setAnimations] = useState(constructAnimations()); // Using useState hook
+const Animation = ({ children }) => {
+  const animations = useRef(
+    [...Array(COUNT).keys()].map(() => new Animated.Value(0))
+  ).current;
 
-  componentDidMount() {
-    this.animateCircles();
-  }
+  useEffect(() => {
+    animateCircles();
+  }, []);
 
-  animateCircles = () => {
-    const actions = Array(COUNT).fill(
-      keyframes({
-        values: [initialPhase, { scale: 2, opacity: 0 }],
-        duration: DURATION,
-        loop: Infinity,
-        yoyo: Infinity,
-      })
-    );
-
-    stagger(actions, DURATION / COUNT).start((animations) => {
-      setAnimations(animations); // Using setAnimations to update state
-    });
+  const animateCircles = () => {
+    Animated.loop(
+      Animated.stagger(
+        DURATION / COUNT,
+        animations.map((anim) =>
+          Animated.sequence([
+            Animated.timing(anim, {
+              toValue: 1,
+              duration: DURATION / 2,
+              useNativeDriver: true,
+            }),
+            Animated.timing(anim, {
+              toValue: 0,
+              duration: DURATION / 2,
+              useNativeDriver: true,
+            }),
+          ])
+        )
+      )
+    ).start();
   };
 
   return (
     <View style={styles.container}>
-      {this.state.animations.map(({ opacity, scale }, index) => {
+      {animations.map((anim, index) => {
         return (
           <Animated.View
             key={index}
             style={[
               styles.circle,
               {
-                transform: [{ scale }],
-                opacity,
+                transform: [
+                  {
+                    scale: anim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0, 2],
+                    }),
+                  },
+                ],
+                opacity: anim.interpolate({
+                  inputRange: [0, 0.5, 1],
+                  outputRange: [1, 0, 1],
+                }),
               },
             ]}
           />
         );
       })}
       <View>
-        <Text>Calling...</Text>
+        {/* <Text>Calling...</Text> */}
+        {children}
+        <Image source={require('../assets/glossy.png')} />
       </View>
     </View>
   );
-}
+};
 
-const getCircle = (radius, backgroundColor = theme.color.primary) => ({
+const getCircle = (radius, backgroundColor = theme.colors.primary) => ({
   backgroundColor,
   width: radius * 2,
   height: radius * 2,
   borderRadius: radius,
   position: "absolute",
 });
-
-export default Animation;
 
 const styles = StyleSheet.create({
   circle: getCircle(100),
@@ -221,5 +235,9 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
+
+export default Animation;

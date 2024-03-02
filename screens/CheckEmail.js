@@ -6,6 +6,7 @@ import PrimaryButton from "../components/PrimaryButton";
 import { emailValidator } from "../utils/utils";
 import { theme } from "../utils/theme";
 import SubText from "../components/SubText";
+import Animation from "../components/Animation";
 
 const CheckEmail = () => {
   const navigation = useNavigation();
@@ -24,6 +25,7 @@ const CheckEmail = () => {
   return (
     <View style={styles.loginContainer}>
       {/* Animation */}
+      <Animation />
       <View style={styles.contentContainer}>
       <Header>Your email will soon arrive</Header>
       <SubText>
