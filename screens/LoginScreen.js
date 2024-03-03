@@ -41,7 +41,7 @@ const LoginScreen = () => {
       return;
     }
 
-    navigation.navigate("Dashboard");
+    navigation.navigate("AllApps");
   };
 
   return (

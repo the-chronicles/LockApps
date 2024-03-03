@@ -210,9 +210,8 @@ const Animation = ({ children }) => {
         );
       })}
       <View>
-        {/* <Text>Calling...</Text> */}
         {children}
-        <Image source={require('../assets/glossy.png')} />
+        <Image source={require("../assets/glossy.png")} />
       </View>
     </View>
   );
@@ -227,9 +226,9 @@ const getCircle = (radius, backgroundColor = theme.colors.primary) => ({
 });
 
 const styles = StyleSheet.create({
-  circle: getCircle(100),
+  circle: getCircle(75),
   midCircle: {
-    ...getCircle(75),
+    ...getCircle(50),
     alignItems: "center",
     justifyContent: "center",
   },

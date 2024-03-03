@@ -10,8 +10,19 @@ import CheckEmail from "./screens/CheckEmail";
 import Animation from "./components/Animation";
 import SetPassword from "./screens/SetPassword";
 import ResetConfirmation from "./screens/ResetConfirmation";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import AllApps from "./screens/AllApps";
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
+function DrawerNavigator() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="AllApps" component={AllApps} />
+    </Drawer.Navigator>
+  );
+}
 
 export default function App() {
   return (
@@ -41,46 +52,71 @@ export default function App() {
               headerTitleAlign: "center",
             }}
           />
-          <Stack.Screen name="SignUp" component={SignupScreen} options={{
-            headerTitle: "Sign Up",
-            headerTitleStyle: {
-              // fontFamily: "gilroy",
-              fontSize: 16,
-            },
-            headerTitleAlign: "center",
-          }} />
-          <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{
-            headerTitle: "Forgot Password",
-            headerTitleStyle: {
-              // fontFamily: "gilroy",
-              fontSize: 16,
-            },
-            headerTitleAlign: "center",
-          }} />
-          <Stack.Screen name="CheckEmail" component={CheckEmail} options={{
-            headerTitle: "Check Mail",
-            headerTitleStyle: {
-              // fontFamily: "gilroy",
-              fontSize: 16,
-            },
-            headerTitleAlign: "center",
-          }} />
-          <Stack.Screen name="SetPassword" component={SetPassword} options={{
-            headerTitle: "Set Password",
-            headerTitleStyle: {
-              // fontFamily: "gilroy",
-              fontSize: 16,
-            },
-            headerTitleAlign: "center",
-          }} />
-          <Stack.Screen name="ResetConfirmPass" component={ResetConfirmation} options={{
-            headerTitle: "Confirmed",
-            headerTitleStyle: {
-              // fontFamily: "gilroy",
-              fontSize: 16,
-            },
-            headerTitleAlign: "center",
-          }} />
+          <Stack.Screen
+            name="SignUp"
+            component={SignupScreen}
+            options={{
+              headerTitle: "Sign Up",
+              headerTitleStyle: {
+                // fontFamily: "gilroy",
+                fontSize: 16,
+              },
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="ForgotPassword"
+            component={ForgotPasswordScreen}
+            options={{
+              headerTitle: "Forgot Password",
+              headerTitleStyle: {
+                // fontFamily: "gilroy",
+                fontSize: 16,
+              },
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="CheckEmail"
+            component={CheckEmail}
+            options={{
+              headerTitle: "Check Mail",
+              headerTitleStyle: {
+                // fontFamily: "gilroy",
+                fontSize: 16,
+              },
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="SetPassword"
+            component={SetPassword}
+            options={{
+              headerTitle: "Set Password",
+              headerTitleStyle: {
+                // fontFamily: "gilroy",
+                fontSize: 16,
+              },
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="ResetConfirmPass"
+            component={ResetConfirmation}
+            options={{
+              headerTitle: "Confirmed",
+              headerTitleStyle: {
+                // fontFamily: "gilroy",
+                fontSize: 16,
+              },
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="Drawer"
+            component={DrawerNavigator}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>

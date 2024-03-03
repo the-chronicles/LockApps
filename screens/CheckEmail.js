@@ -11,16 +11,9 @@ import Animation from "../components/Animation";
 const CheckEmail = () => {
   const navigation = useNavigation();
 
-  const _onSendPressed = () => {
-    const emailError = emailValidator(email.value);
-
-    if (emailError) {
-      setEmail({ ...email, error: emailError });
-      return;
-    }
-
-    navigation.navigate("LoginScreen");
-  };
+  function nextHandler() {
+    navigation.navigate("Login");
+  }
 
   return (
     <View style={styles.loginContainer}>
@@ -36,7 +29,7 @@ const CheckEmail = () => {
 
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
-          <PrimaryButton onPress={_onSendPressed}>Continue</PrimaryButton>
+          <PrimaryButton onPress={nextHandler}>Continue</PrimaryButton>
         </View>
       </View>
     </View>
