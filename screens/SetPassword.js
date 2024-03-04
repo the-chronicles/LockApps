@@ -8,12 +8,7 @@ import {
   Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native"; // Import useNavigation hook
-import Background from "../components/Background";
-import Logo from "../components/Logo";
 import Header from "../components/Header";
-import Button from "../components/Button";
-// import TextInput from "../components/TextInput";
-import BackButton from "../components/BackButton";
 import { theme } from "../utils/theme";
 import { emailValidator, passwordValidator } from "../utils/utils";
 import PrimaryButton from "../components/PrimaryButton";
@@ -21,7 +16,7 @@ import SecondaryButton from "../components/SecondaryButton";
 import SubText from "../components/SubText";
 import { MaterialIcons } from "@expo/vector-icons";
 
-const SetPassword = () => {
+function SetPassword() {
   const navigation = useNavigation();
 
   const [password, setPassword] = useState({ value: "", error: "" });
@@ -31,22 +26,22 @@ const SetPassword = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  function nextHandler ()  {
+  function nextHandler() {
     navigation.navigate("ResetConfirmPass");
   }
 
-//   const _onSendPressed = () => {
-//     const emailError = emailValidator(email.value);
-//     const passwordError = passwordValidator(password.value);
+  //   const _onSendPressed = () => {
+  //     const emailError = emailValidator(email.value);
+  //     const passwordError = passwordValidator(password.value);
 
-//     if (emailError || passwordError) {
-//       setEmail({ ...email, error: emailError });
-//       setPassword({ ...password, error: passwordError });
-//       return;
-//     }
+  //     if (emailError || passwordError) {
+  //       setEmail({ ...email, error: emailError });
+  //       setPassword({ ...password, error: passwordError });
+  //       return;
+  //     }
 
-//     navigation.navigate("ResetConfirmPass");
-//   };
+  //     navigation.navigate("ResetConfirmPass");
+  //   };
 
   return (
     <>
@@ -54,7 +49,9 @@ const SetPassword = () => {
         <View>
           <Image source={require("../assets/lock.png")} />
           <Header>Set your password</Header>
-          <SubText style={styles.subText}>Please create your new account password for Bress</SubText>
+          <SubText style={styles.subText}>
+            Please create your new account password for Bress
+          </SubText>
         </View>
 
         <View style={styles.inputContainer}>
@@ -103,7 +100,7 @@ const SetPassword = () => {
             </TouchableOpacity>
           </View>
           {/* <View style={styles.buttonContainer}> */}
-            <PrimaryButton onPress={nextHandler}>Continue</PrimaryButton>
+          <PrimaryButton onPress={nextHandler}>Continue</PrimaryButton>
           {/* </View> */}
         </View>
 
@@ -115,7 +112,9 @@ const SetPassword = () => {
       </View>
     </>
   );
-};
+}
+
+export default SetPassword;
 
 const styles = StyleSheet.create({
   loginContainer: {
@@ -178,9 +177,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
   },
-  subText : {
+  subText: {
     fontSize: 24,
-  }
+  },
 });
-
-export default SetPassword;

@@ -8,7 +8,7 @@ import { theme } from "../utils/theme";
 import SubText from "../components/SubText";
 import Animation from "../components/Animation";
 
-const CheckEmail = () => {
+function CheckEmail() {
   const navigation = useNavigation();
 
   function nextHandler() {

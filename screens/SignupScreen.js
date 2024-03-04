@@ -6,14 +6,8 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-// import Background from "../components/Background";
-// import Logo from "../components/Logo";
 import Header from "../components/Header";
-import Button from "../components/Button";
-// import TextInput from "../components/TextInput";
-// import BackButton from "../components/BackButton";
 import { theme } from "../utils/theme";
-// import { Navigation } from "../types";
 import {
   emailValidator,
   passwordValidator,
@@ -25,7 +19,7 @@ import SecondaryButton from "../components/SecondaryButton";
 import PrimaryButton from "../components/PrimaryButton";
 import { MaterialIcons } from "@expo/vector-icons";
 
-const SignupScreen = () => {
+function SignupScreen() {
   const navigation = useNavigation();
 
   const [name, setName] = useState({ value: "", error: "" });
@@ -142,7 +136,9 @@ const SignupScreen = () => {
       </View>
     </>
   );
-};
+}
+
+export default SignupScreen;
 
 const styles = StyleSheet.create({
   loginContainer: {
@@ -205,5 +201,3 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-
-export default SignupScreen;

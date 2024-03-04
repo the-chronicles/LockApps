@@ -13,7 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import SubText from "../components/SubText";
 import PrimaryButton from "../components/PrimaryButton";
 
-const ForgotPasswordScreen = () => {
+function ForgotPasswordScreen () {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState({ value: "", error: "" });
@@ -71,6 +71,8 @@ const ForgotPasswordScreen = () => {
   );
 };
 
+export default ForgotPasswordScreen;
+
 const styles = StyleSheet.create({
   loginContainer: {
     flex: 1,
@@ -113,4 +115,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ForgotPasswordScreen;
+

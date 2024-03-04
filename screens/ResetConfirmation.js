@@ -14,7 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import SubText from "../components/SubText";
 import PrimaryButton from "../components/PrimaryButton";
 
-const ResetConfirmation = () => {
+function ResetConfirmation() {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState({ value: "", error: "" });
@@ -55,6 +55,8 @@ const ResetConfirmation = () => {
   );
 };
 
+export default ResetConfirmation;
+
 const styles = StyleSheet.create({
   loginContainer: {
     flex: 1,
@@ -81,4 +83,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ResetConfirmation;
+

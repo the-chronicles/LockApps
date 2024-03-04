@@ -6,13 +6,9 @@ import {
   View,
   TextInput,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native"; // Import useNavigation hook
-import Background from "../components/Background";
-import Logo from "../components/Logo";
+import { useNavigation } from "@react-navigation/native";
 import Header from "../components/Header";
-import Button from "../components/Button";
-// import TextInput from "../components/TextInput";
-import BackButton from "../components/BackButton";
+
 import { theme } from "../utils/theme";
 import { emailValidator, passwordValidator } from "../utils/utils";
 import PrimaryButton from "../components/PrimaryButton";
@@ -20,7 +16,7 @@ import SecondaryButton from "../components/SecondaryButton";
 import SubText from "../components/SubText";
 import { MaterialIcons } from "@expo/vector-icons";
 
-const LoginScreen = () => {
+function LoginScreen() {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState({ value: "", error: "" });
@@ -116,6 +112,8 @@ const LoginScreen = () => {
   );
 };
 
+export default LoginScreen;
+
 const styles = StyleSheet.create({
   loginContainer: {
     flex: 1,
@@ -178,4 +176,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+
