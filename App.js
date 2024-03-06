@@ -42,6 +42,11 @@ export default function App() {
           }}
         >
           <Stack.Screen
+            name="Drawer"
+            component={DrawerNavigator}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
             name="Login"
             component={LoginScreen}
             options={{
@@ -112,11 +117,6 @@ export default function App() {
               },
               headerTitleAlign: "center",
             }}
-          />
-          <Stack.Screen
-            name="Drawer"
-            component={DrawerNavigator}
-            options={{ headerShown: false }}
           />
         </Stack.Navigator>
       </NavigationContainer>
