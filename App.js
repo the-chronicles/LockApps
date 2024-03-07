@@ -17,11 +17,123 @@ import AllApps from "./screens/AllApps";
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
+function AuthStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: theme.colors.accent },
+        headerTintColor: "#000000",
+        headerShadowVisible: false,
+        sceneContainerStyle: { backgroundColor: theme.colors.error },
+      }}
+    >
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{
+          headerTitle: "Login",
+          headerTitleStyle: {
+            // fontFamily: "gilroy",
+            fontSize: 16,
+          },
+          headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={SignupScreen}
+        options={{
+          headerTitle: "Sign Up",
+          headerTitleStyle: {
+            // fontFamily: "gilroy",
+            fontSize: 16,
+          },
+          headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen
+        name="ForgotPassword"
+        component={ForgotPasswordScreen}
+        options={{
+          headerTitle: "Forgot Password",
+          headerTitleStyle: {
+            // fontFamily: "gilroy",
+            fontSize: 16,
+          },
+          headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen
+        name="CheckEmail"
+        component={CheckEmail}
+        options={{
+          headerTitle: "Check Mail",
+          headerTitleStyle: {
+            // fontFamily: "gilroy",
+            fontSize: 16,
+          },
+          headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen
+        name="SetPassword"
+        component={SetPassword}
+        options={{
+          headerTitle: "Set Password",
+          headerTitleStyle: {
+            // fontFamily: "gilroy",
+            fontSize: 16,
+          },
+          headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen
+        name="ResetConfirmPass"
+        component={ResetConfirmation}
+        options={{
+          headerTitle: "Confirmed",
+          headerTitleStyle: {
+            // fontFamily: "gilroy",
+            fontSize: 16,
+          },
+          headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen
+        name="DrawerNavigator"
+        component={DrawerNavigator}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+// function AuthenticatedStack() {
+//   <Drawer.Navigator>
+//     <Drawer.Screen name="AllApps" component={AllApps} />
+//   </Drawer.Navigator>;
+// }
+
 function DrawerNavigator() {
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: theme.colors.primary },
+        headerTintColor: 'white',
+        sceneContainerStyle: {backgroundColor: 'white'},
+        drawerContentStyle: {backgroundColor: 'white'},
+      }}
+    >
       <Drawer.Screen name="AllApps" component={AllApps} />
     </Drawer.Navigator>
+  );
+}
+
+function Navigation() {
+  return (
+    <NavigationContainer>
+      <AuthStack />
+    </NavigationContainer>
   );
 }
 
@@ -29,97 +141,7 @@ export default function App() {
   return (
     <>
       <StatusBar style="auto" />
-
-      {/* <Animation /> */}
-
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerStyle: { backgroundColor: theme.colors.accent },
-            headerTintColor: "#000000",
-            headerShadowVisible: false,
-            sceneContainerStyle: { backgroundColor: theme.colors.error },
-          }}
-        >
-          <Stack.Screen
-            name="Drawer"
-            component={DrawerNavigator}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Login"
-            component={LoginScreen}
-            options={{
-              headerTitle: "Login",
-              headerTitleStyle: {
-                // fontFamily: "gilroy",
-                fontSize: 16,
-              },
-              headerTitleAlign: "center",
-            }}
-          />
-          <Stack.Screen
-            name="SignUp"
-            component={SignupScreen}
-            options={{
-              headerTitle: "Sign Up",
-              headerTitleStyle: {
-                // fontFamily: "gilroy",
-                fontSize: 16,
-              },
-              headerTitleAlign: "center",
-            }}
-          />
-          <Stack.Screen
-            name="ForgotPassword"
-            component={ForgotPasswordScreen}
-            options={{
-              headerTitle: "Forgot Password",
-              headerTitleStyle: {
-                // fontFamily: "gilroy",
-                fontSize: 16,
-              },
-              headerTitleAlign: "center",
-            }}
-          />
-          <Stack.Screen
-            name="CheckEmail"
-            component={CheckEmail}
-            options={{
-              headerTitle: "Check Mail",
-              headerTitleStyle: {
-                // fontFamily: "gilroy",
-                fontSize: 16,
-              },
-              headerTitleAlign: "center",
-            }}
-          />
-          <Stack.Screen
-            name="SetPassword"
-            component={SetPassword}
-            options={{
-              headerTitle: "Set Password",
-              headerTitleStyle: {
-                // fontFamily: "gilroy",
-                fontSize: 16,
-              },
-              headerTitleAlign: "center",
-            }}
-          />
-          <Stack.Screen
-            name="ResetConfirmPass"
-            component={ResetConfirmation}
-            options={{
-              headerTitle: "Confirmed",
-              headerTitleStyle: {
-                // fontFamily: "gilroy",
-                fontSize: 16,
-              },
-              headerTitleAlign: "center",
-            }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Navigation />
     </>
   );
 }

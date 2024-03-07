@@ -37,14 +37,14 @@ function LoginScreen() {
       return;
     }
 
-    navigation.navigate("AllApps");
+    navigation.navigate("DrawerNavigator");
   };
 
   return (
     <>
       <View style={styles.loginContainer}>
         <View>
-          <Header>Welcome back!</Header>
+          <Header>Welcome back!!</Header>
           <SubText>
             Please fill in your details to log into your account
           </SubText>
