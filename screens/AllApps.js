@@ -21,6 +21,7 @@ function MyTabs() {
     <Tab.Navigator>
       <Tab.Screen name="Home" component={AllAppsStack} />
       <Tab.Screen name="Tools" component={Tools} />
+      <Tab.Screen name="Tools" component={Tools} />
     </Tab.Navigator>
   );
 }
