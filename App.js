@@ -118,12 +118,6 @@ function AuthStack() {
   );
 }
 
-// function AuthenticatedStack() {
-//   <Drawer.Navigator>
-//     <Drawer.Screen name="AllApps" component={AllApps} />
-//   </Drawer.Navigator>;
-// }
-
 function TabNavigator() {
   return (
     <Tab.Navigator
