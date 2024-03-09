@@ -13,9 +13,19 @@ import SetPassword from "./screens/SetPassword";
 import ResetConfirmation from "./screens/ResetConfirmation";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import AllApps from "./screens/AllApps";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Tools from "./screens/Tools";
+import Premium from "./screens/Premium";
+import Settings from "./screens/Settings";
+import {
+  AntDesign,
+  Ionicons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 
 function AuthStack() {
   return (
@@ -114,17 +124,74 @@ function AuthStack() {
 //   </Drawer.Navigator>;
 // }
 
+function TabNavigator() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: { borderTopRightRadius: 15, borderTopLeftRadius: 15 },
+        tabBarInactiveTintColor: theme.colors.secondary200,
+      }}
+    >
+      <Tab.Screen
+        name="Home"
+        component={AllApps}
+        options={{
+          title: "All Apps",
+          tabBarLabel: "All Apps",
+          tabBarIcon: ({ color, size }) => (
+            <AntDesign name="appstore1" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Tools"
+        component={Tools}
+        options={{
+          // title: 'Home',
+          // tabBarLabel: 'Home',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="tools" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Premium"
+        component={Premium}
+        options={{
+          title: "Premium",
+          tabBarLabel: "Premium",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="diamond-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          title: "Settings",
+          tabBarLabel: "Settings",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="settings-sharp" size={size} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
 function DrawerNavigator() {
   return (
     <Drawer.Navigator
       screenOptions={{
         headerStyle: { backgroundColor: theme.colors.primary },
-        headerTintColor: 'white',
-        sceneContainerStyle: {backgroundColor: 'white'},
-        drawerContentStyle: {backgroundColor: 'white'},
+        headerTintColor: "white",
+        sceneContainerStyle: { backgroundColor: "white" },
+        drawerContentStyle: { backgroundColor: "white" },
       }}
     >
-      <Drawer.Screen name="AllApps" component={AllApps} />
+      <Drawer.Screen name="AllApps" component={TabNavigator} />
     </Drawer.Navigator>
   );
 }
