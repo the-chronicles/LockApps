@@ -109,12 +109,33 @@ function AuthStack() {
           headerTitleAlign: "center",
         }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="DrawerNavigator"
         component={DrawerNavigator}
         options={{ headerShown: false }}
+      /> */}
+      <Stack.Screen
+        name="TabNavigator"
+        component={TabNavigator}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
+  );
+}
+
+function DrawerNavigator() {
+  return (
+    <Drawer.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: theme.colors.primary },
+        headerTintColor: "white",
+        sceneContainerStyle: { backgroundColor: "white" },
+        drawerContentStyle: { backgroundColor: "white" },
+      }}
+    >
+      {/* <Drawer.Screen name="AllApps" component={TabNavigator} /> */}
+      <Drawer.Screen name="AllApps" component={AllApps} />
+    </Drawer.Navigator>
   );
 }
 
@@ -123,11 +144,23 @@ function TabNavigator() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarStyle: { borderTopRightRadius: 15, borderTopLeftRadius: 15 },
+        tabBarStyle: { borderTopRightRadius: 15, borderTopLeftRadius: 15, height: 80},
         tabBarInactiveTintColor: theme.colors.secondary200,
+      tabBarLabelStyle: {height: 30}
       }}
     >
       <Tab.Screen
+        name="DrawerNavigator"
+        component={DrawerNavigator}
+        options={{
+          title: "All Apps",
+          tabBarLabel: "All Apps",
+          tabBarIcon: ({ color, size }) => (
+            <AntDesign name="appstore1" size={size} color={color} />
+          ),
+        }}
+      />
+      {/* <Tab.Screen
         name="Home"
         component={AllApps}
         options={{
@@ -137,7 +170,7 @@ function TabNavigator() {
             <AntDesign name="appstore1" size={size} color={color} />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Tools"
         component={Tools}
@@ -175,20 +208,21 @@ function TabNavigator() {
   );
 }
 
-function DrawerNavigator() {
-  return (
-    <Drawer.Navigator
-      screenOptions={{
-        headerStyle: { backgroundColor: theme.colors.primary },
-        headerTintColor: "white",
-        sceneContainerStyle: { backgroundColor: "white" },
-        drawerContentStyle: { backgroundColor: "white" },
-      }}
-    >
-      <Drawer.Screen name="AllApps" component={TabNavigator} />
-    </Drawer.Navigator>
-  );
-}
+// function DrawerNavigator() {
+//   return (
+//     <Drawer.Navigator
+//       screenOptions={{
+//         headerStyle: { backgroundColor: theme.colors.primary },
+//         headerTintColor: "white",
+//         sceneContainerStyle: { backgroundColor: "white" },
+//         drawerContentStyle: { backgroundColor: "white" },
+//       }}
+//     >
+//       {/* <Drawer.Screen name="AllApps" component={TabNavigator} /> */}
+//       <Drawer.Screen name="AllApps" component={AllApps} />
+//     </Drawer.Navigator>
+//   );
+// }
 
 function Navigation() {
   return (

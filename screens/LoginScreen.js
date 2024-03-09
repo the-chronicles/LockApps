@@ -37,7 +37,8 @@ function LoginScreen() {
       return;
     }
 
-    navigation.navigate("DrawerNavigator");
+    // navigation.navigate("DrawerNavigator");
+    navigation.navigate("TabNavigator");
   };
 
   return (
