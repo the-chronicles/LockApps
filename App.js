@@ -22,10 +22,14 @@ import {
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import Unlocked from "./screens/Unlocked";
+import Locked from "./screens/Locked";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
+const TopTab = createMaterialTopTabNavigator();
 
 function AuthStack() {
   return (
@@ -134,8 +138,44 @@ function DrawerNavigator() {
       }}
     >
       {/* <Drawer.Screen name="AllApps" component={TabNavigator} /> */}
-      <Drawer.Screen name="AllApps" component={AllApps} />
+      {/* <Drawer.Screen name="AllApps" component={AllApps} /> */}
+      <Drawer.Screen name="AllApps" component={TopNavigator} />
     </Drawer.Navigator>
+  );
+}
+
+function TopNavigator() {
+  return (
+    <TopTab.Navigator
+      tabBarOptions={{
+        activeTintColor: theme.colors.primary,
+        inactiveTintColor: theme.colors.secondary,
+        indicatorStyle: {
+          height: null,
+          top: "10%",
+          bottom: "10%",
+          width: "45%",
+          left: "2.5%",
+          borderRadius: 100,
+          backgroundColor: theme.colors.secondary,
+        },
+        style: {
+          alignSelf: "center",
+          width: "90%",
+          borderRadius: 8,
+          borderColor: "blue",
+          backgroundColor: theme.colors.primary,
+          margin: 10,
+        },
+        tabStyle: {
+          borderRadius: 100,
+        },
+      }}
+      swipeEnabled={true}
+    >
+      <TopTab.Screen name="Unlocked" component={Unlocked} />
+      <TopTab.Screen name="Locked" component={Locked} />
+    </TopTab.Navigator>
   );
 }
 
@@ -144,9 +184,13 @@ function TabNavigator() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarStyle: { borderTopRightRadius: 15, borderTopLeftRadius: 15, height: 80},
+        tabBarStyle: {
+          borderTopRightRadius: 15,
+          borderTopLeftRadius: 15,
+          height: 80,
+        },
         tabBarInactiveTintColor: theme.colors.secondary200,
-      tabBarLabelStyle: {height: 30}
+        tabBarLabelStyle: { height: 30 },
       }}
     >
       <Tab.Screen
