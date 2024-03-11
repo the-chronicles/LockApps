@@ -147,30 +147,33 @@ function DrawerNavigator() {
 function TopNavigator() {
   return (
     <TopTab.Navigator
-      tabBarOptions={{
-        activeTintColor: theme.colors.primary,
-        inactiveTintColor: theme.colors.secondary,
-        indicatorStyle: {
+      screenOptions={() => ({
+        tabBarActiveTintColor: "white",
+        tabBarInactiveTintColor: theme.colors.primary,
+        tabBarIndicatorStyle: {
           height: null,
           top: "10%",
           bottom: "10%",
           width: "45%",
           left: "2.5%",
-          borderRadius: 100,
-          backgroundColor: theme.colors.secondary,
-        },
-        style: {
-          alignSelf: "center",
-          width: "90%",
           borderRadius: 8,
-          borderColor: "blue",
           backgroundColor: theme.colors.primary,
-          margin: 10,
         },
-        tabStyle: {
-          borderRadius: 100,
+        tabBarStyle: {
+          alignSelf: "center",
+          width: "100%",
+          // borderRadius: 8,
+          borderColor: theme.colors.primary,
+          backgroundColor: theme.colors.secondary,
+          // margin: 8,
+          elevation: 0,
         },
-      }}
+        tabBarItemStyle: {
+          borderRadius: 8,
+          margin: 2,
+        },
+        // tabBarGap: 10,
+      })}
       swipeEnabled={true}
     >
       <TopTab.Screen name="Unlocked" component={Unlocked} />
@@ -185,8 +188,8 @@ function TabNavigator() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          borderTopRightRadius: 15,
-          borderTopLeftRadius: 15,
+          borderTopRightRadius: 30,
+          borderTopLeftRadius: 30,
           height: 80,
         },
         tabBarInactiveTintColor: theme.colors.secondary200,
