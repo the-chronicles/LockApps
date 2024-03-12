@@ -10,7 +10,7 @@ import {
 import { theme } from "../utils/theme";
 import { AntDesign } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
-import InstalledApps from "react-native-installed-apps";
+import { InstalledApps } from "react-native-launcher-kit";
 
 function Unlocked() {
   const [appList, setAppList] = useState([]);
@@ -25,25 +25,21 @@ function Unlocked() {
     fetchAppList();
   }, []);
 
-  const toggleAppLock = async (appName, isLocked) => {
-    // Update the list of locked apps
-    const updatedLockedApps = isLocked
-      ? [...lockedApps, appName]
-      : lockedApps.filter((app) => app !== appName);
-    setLockedApps(updatedLockedApps);
+  // const toggleAppLock = async (appName, isLocked) => {
+  //   const updatedLockedApps = isLocked
+  //     ? [...lockedApps, appName]
+  //     : lockedApps.filter((app) => app !== appName);
+  //   setLockedApps(updatedLockedApps);
 
-    // Store the updated list of locked apps locally
-    await AsyncStorage.setItem("lockedApps", JSON.stringify(updatedLockedApps));
-  };
+  //   await AsyncStorage.setItem("lockedApps", JSON.stringify(updatedLockedApps));
+  // };
 
-  const removeLockedApp = async (appName) => {
-    // Update the list of locked apps by removing the specified app
-    const updatedLockedApps = lockedApps.filter((app) => app !== appName);
-    setLockedApps(updatedLockedApps);
+  // const removeLockedApp = async (appName) => {  
+  //   const updatedLockedApps = lockedApps.filter((app) => app !== appName);
+  //   setLockedApps(updatedLockedApps);
 
-    // Store the updated list of locked apps locally
-    await AsyncStorage.setItem("lockedApps", JSON.stringify(updatedLockedApps));
-  };
+  //   await AsyncStorage.setItem("lockedApps", JSON.stringify(updatedLockedApps));
+  // };
 
   const filteredAppList = appList.filter((app) =>
     app.appName.toLowerCase().includes(searchQuery.toLowerCase())
