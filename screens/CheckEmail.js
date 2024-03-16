@@ -12,7 +12,7 @@ function CheckEmail() {
   const navigation = useNavigation();
 
   function nextHandler() {
-    navigation.navigate("Login");
+    navigation.navigate("SetPassword");
   }
 
   return (

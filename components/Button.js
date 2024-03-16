@@ -5,16 +5,63 @@ import {
   MaterialIcons,
 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import CustomAlert from "./Alert";
+import { useState } from "react";
 
 function Button() {
   const navigation = useNavigation();
+  const [isLogoutAlertVisible, setIsLogoutAlertVisible] = useState(false);
+
+  const handleLogout = () => {
+    setIsLogoutAlertVisible(true);
+  };
+
+  const handleLogoutConfirm = () => {
+    navigation.navigate("Login"); // Perform logout action
+    setIsLogoutAlertVisible(false);
+  };
+
+  const handleLogoutCancel = () => {
+    setIsLogoutAlertVisible(false);
+  };
+
+  // const handleLogout = () => {
+  //   Alert.alert(
+  //     "Logout",
+  //     "Are you sure you want to logout?",
+  //     [
+  //       {
+  //         text: "No",
+  //         style: "cancel",
+  //       },
+  //       {
+  //         text: "Yes",
+  //         onPress: () => {
+  //           // Perform logout action here, for example:
+  //           navigation.navigate("Login"); // Navigate to the login screen
+  //         },
+  //       },
+  //     ],
+  //     { cancelable: false }
+  //   );
+  // };
 
   return (
     <>
       <View style={styles.main}>
         <View>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("ApplicationSettings")}
+          >
             <View style={styles.container}>
               <View style={styles.icon}>
                 <Image
@@ -31,7 +78,10 @@ function Button() {
               />
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("AccountSettings")}
+          >
             <View style={styles.container2}>
               <View style={styles.icon}>
                 <Ionicons name="settings-outline" size={24} color="black" />
@@ -90,10 +140,7 @@ function Button() {
               />
             </View>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate("Login")}
-          >
+          <TouchableOpacity style={styles.button} onPress={handleLogout}>
             <View style={styles.container3}>
               <View style={styles.icon}>
                 <AntDesign name="logout" size={24} color="red" />
@@ -107,6 +154,14 @@ function Button() {
               />
             </View>
           </TouchableOpacity>
+
+          <CustomAlert
+            isVisible={isLogoutAlertVisible}
+            message="You are about logging out of your account. Do you wish to continue?"
+            // confirmationmessage="Do you wish to continue?"
+            onConfirm={handleLogoutConfirm}
+            onCancel={handleLogoutCancel}
+          />
         </View>
       </View>
     </>

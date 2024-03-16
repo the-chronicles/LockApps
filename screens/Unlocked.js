@@ -42,8 +42,8 @@ function Unlocked() {
   // };
 
   const filteredAppList = appList.filter((app) =>
-    app.appName.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  app.appName && app.appName.toLowerCase().includes(searchQuery.toLowerCase())
+);
 
   return (
     <View style={styles.container}>
