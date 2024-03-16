@@ -1,4 +1,4 @@
-import { AppRegistry } from "react-native";
+import { AppRegistry, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import LoginScreen from "./screens/LoginScreen";
@@ -25,6 +25,7 @@ import {
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Unlocked from "./screens/Unlocked";
 import Locked from "./screens/Locked";
+import { SafeAreaContext } from "react-native-safe-area-context";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -273,9 +274,9 @@ function TabNavigator() {
 
 function Navigation() {
   return (
-    <NavigationContainer>
-      <AuthStack />
-    </NavigationContainer>
+      <NavigationContainer>
+        <AuthStack />
+      </NavigationContainer>
   );
 }
 
