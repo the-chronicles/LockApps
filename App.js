@@ -144,6 +144,7 @@ function TopNavigator() {
   return (
     <TopTab.Navigator
       screenOptions={() => ({
+        swipeEnabled: true,
         tabBarActiveTintColor: "white",
         tabBarInactiveTintColor: theme.colors.primary,
         tabBarIndicatorStyle: {
@@ -170,7 +171,7 @@ function TopNavigator() {
         },
         // tabBarGap: 10,
       })}
-      swipeEnabled={true}
+      // swipeEnabled={true}
     >
       <TopTab.Screen name="Unlocked" component={Unlocked} />
       <TopTab.Screen name="Locked" component={Locked} />

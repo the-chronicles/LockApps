@@ -70,7 +70,7 @@ function LoginScreen() {
             <TextInput
               style={styles.inputText}
               placeholder="Password"
-              returnKeyType="done"
+              returnKeyType="go"
               value={password.value}
               onChangeText={(text) => setPassword({ value: text, error: "" })}
               error={!!password.error}

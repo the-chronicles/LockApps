@@ -12,6 +12,8 @@ import { AntDesign } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { InstalledApps } from "react-native-launcher-kit";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 function Unlocked() {
   const [appList, setAppList] = useState([]);
   const [lockedApps, setLockedApps] = useState([]);
@@ -19,42 +21,70 @@ function Unlocked() {
 
   useEffect(() => {
     const fetchAppList = async () => {
-      const installedApps = await InstalledApps.getApps();
-      setAppList(installedApps);
+      try {
+        const installedApps = await InstalledApps.getApps();
+        setAppList(installedApps); 
+      } catch (error) {
+        console.error("Error fetching app list:", error);
+      }
     };
     fetchAppList();
   }, []);
 
   // const toggleAppLock = async (appName, isLocked) => {
-  //   const updatedLockedApps = isLocked
-  //     ? [...lockedApps, appName]
-  //     : lockedApps.filter((app) => app !== appName);
-  //   setLockedApps(updatedLockedApps);
+  //   setLockedApps((prevLockedApps) => {
+  //     const updatedLockedApps = isLocked
+  //       ? [...prevLockedApps, appName]
+  //       : prevLockedApps.filter((app) => app !== appName);
+  //     return updatedLockedApps;
+  //   });
 
-  //   await AsyncStorage.setItem("lockedApps", JSON.stringify(updatedLockedApps));
+  //   await AsyncStorage.setItem("lockedApps", JSON.stringify(lockedApps));
   // };
 
-  // const removeLockedApp = async (appName) => {  
+  // const removeLockedApp = async (appName) => {
   //   const updatedLockedApps = lockedApps.filter((app) => app !== appName);
   //   setLockedApps(updatedLockedApps);
 
   //   await AsyncStorage.setItem("lockedApps", JSON.stringify(updatedLockedApps));
   // };
 
-  const filteredAppList = appList.filter((app) =>
-  app.appName && app.appName.toLowerCase().includes(searchQuery.toLowerCase())
-);
+  const toggleAppLock = async (appName, isLocked) => {
+    const updatedLockedApps = isLocked
+      ? [...lockedApps, appName]
+      : lockedApps.filter((app) => app !== appName);
+    setLockedApps(updatedLockedApps);
+  
+    const newFilteredList = searchQuery === ""
+      ? updatedLockedApps
+      : appList.filter((app) =>
+          app.appName && app.appName.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    setFilteredAppList(newFilteredList);
+  
+    await AsyncStorage.setItem("lockedApps", JSON.stringify(updatedLockedApps));
+  };
+  
+
+  const filteredAppList =
+    searchQuery === ""
+      ? appList
+      : appList.filter(
+          (app) =>
+            app.appName &&
+            app.appName.toLowerCase().includes(searchQuery.toLowerCase())
+        );
 
   return (
     <View style={styles.container}>
       <View style={styles.search}>
         <TextInput
           style={styles.inputTextContainer}
-          placeholder="Search apps!"
+          placeholder="Search apps"
           keyboardType="default"
           autoCapitalize="none"
           autoCorrect={false}
-          returnKeyType="go"
+          returnKeyType="search"
           value={searchQuery}
           onChangeText={(text) => setSearchQuery(text)}
         />
@@ -83,7 +113,8 @@ function Unlocked() {
             )}
           </View>
         )}
-        keyExtractor={(item) => item.packageName}
+        // keyExtractor={(item) => item.packageName}
+        keyExtractor={(item, index) => index.toString()}
       />
     </View>
   );
