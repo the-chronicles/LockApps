@@ -23,17 +23,6 @@ function ResetConfirmation() {
     navigation.navigate("Login");
   }
 
-  // const _onSendPressed = () => {
-  // const emailError = emailValidator(email.value);
-
-  // if (emailError) {
-  //   setEmail({ ...email, error: emailError });
-  //   return;
-  // }
-
-  // navigation.navigate("SetPassword");
-  // };
-
   return (
     <>
       <View style={styles.loginContainer}>

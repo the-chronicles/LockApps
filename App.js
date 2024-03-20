@@ -19,8 +19,10 @@ import Premium from "./screens/Premium";
 import Settings from "./screens/Settings";
 import {
   AntDesign,
+  Entypo,
   Ionicons,
   MaterialCommunityIcons,
+  MaterialIcons,
 } from "@expo/vector-icons";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Unlocked from "./screens/Unlocked";
@@ -33,6 +35,62 @@ const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 const TopTab = createMaterialTopTabNavigator();
 const AppStack = createNativeStackNavigator();
+
+function CustomDrawerContent(props) {
+  return (
+    <SafeAreaView style={{ flex: 1, paddingTop: 30 }}>
+      <View style={{ padding: 20 }}>
+        <Text style={{ fontSize: 20, fontWeight: "bold" }}>App Name</Text>
+      </View>
+
+      <View
+        style={{ flexDirection: "row", alignItems: "center", marginTop: 25 }}
+      >
+        <View
+          style={{ flex: 1, height: 1, width: 4, backgroundColor: "#ccc" }}
+        />
+      </View>
+
+      <View style={{ marginTop: 20, paddingLeft: 20 }}>
+        <View style={{ flexDirection: "row", paddingVertical: 10 }}>
+          <MaterialCommunityIcons name="eye-remove" size={24} color="red" />
+          <Text style={{ paddingLeft: 10, fontSize: 16 }}>Remove Ads</Text>
+        </View>
+        <View style={{ flexDirection: "row", paddingVertical: 10 }}>
+          <MaterialCommunityIcons
+            name="help-circle"
+            size={24}
+            color="#04aa64"
+          />
+          <Text style={{ paddingLeft: 10, fontSize: 16 }}>Help</Text>
+        </View>
+      </View>
+
+      <View
+        style={{ flexDirection: "row", alignItems: "center", marginTop: 20 }}
+      >
+        <View
+          style={{ flex: 1, height: 1, width: 4, backgroundColor: "#ccc" }}
+        />
+      </View>
+
+      <View style={{ marginTop: 30, paddingLeft: 20 }}>
+        <View style={{ flexDirection: "row", paddingVertical: 10 }}>
+          <MaterialCommunityIcons name="star" size={24} color="#666666" />
+          <Text style={{ paddingLeft: 10, fontSize: 16 }}>Rate Us</Text>
+        </View>
+        <View style={{ flexDirection: "row", paddingVertical: 10 }}>
+          <Entypo name="share" size={24} color="#666666" />
+          <Text style={{ paddingLeft: 10, fontSize: 16 }}>Share</Text>
+        </View>
+        <View style={{ flexDirection: "row", paddingVertical: 10 }}>
+          <MaterialIcons name="feedback" size={24} color="#666666" />
+          <Text style={{ paddingLeft: 10, fontSize: 16 }}>Feedback</Text>
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+}
 
 function AuthStack() {
   return (
@@ -128,6 +186,7 @@ function AuthStack() {
 function DrawerNavigator() {
   return (
     <Drawer.Navigator
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
       screenOptions={{
         headerStyle: { backgroundColor: theme.colors.primary },
         headerTintColor: "white",
@@ -183,8 +242,11 @@ function AppSettings() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Settings" component={Settings} />
-      <Stack.Screen name="ApplicationSettings" component={Applicationsettings}  />
-      <Stack.Screen name="AccountSettings" component={Accountsettings}  />
+      <Stack.Screen
+        name="ApplicationSettings"
+        component={Applicationsettings}
+      />
+      <Stack.Screen name="AccountSettings" component={Accountsettings} />
     </Stack.Navigator>
   );
 }
@@ -268,10 +330,4 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    // paddingTop: 20,
-    // margin: 24,
-  },
-});
+const styles = StyleSheet.create({});

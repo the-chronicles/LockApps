@@ -23,7 +23,7 @@ function Unlocked() {
     const fetchAppList = async () => {
       try {
         const installedApps = await InstalledApps.getApps();
-        setAppList(installedApps); 
+        setAppList(installedApps);
       } catch (error) {
         console.error("Error fetching app list:", error);
       }
@@ -42,29 +42,31 @@ function Unlocked() {
   //   await AsyncStorage.setItem("lockedApps", JSON.stringify(lockedApps));
   // };
 
-  // const removeLockedApp = async (appName) => {
-  //   const updatedLockedApps = lockedApps.filter((app) => app !== appName);
-  //   setLockedApps(updatedLockedApps);
-
-  //   await AsyncStorage.setItem("lockedApps", JSON.stringify(updatedLockedApps));
-  // };
-
   const toggleAppLock = async (appName, isLocked) => {
     const updatedLockedApps = isLocked
       ? [...lockedApps, appName]
       : lockedApps.filter((app) => app !== appName);
     setLockedApps(updatedLockedApps);
-  
-    const newFilteredList = searchQuery === ""
-      ? updatedLockedApps
-      : appList.filter((app) =>
-          app.appName && app.appName.toLowerCase().includes(searchQuery.toLowerCase())
-        );
+
+    const newFilteredList =
+      searchQuery === ""
+        ? updatedLockedApps
+        : appList.filter(
+            (app) =>
+              app.appName &&
+              app.appName.toLowerCase().includes(searchQuery.toLowerCase())
+          );
     setFilteredAppList(newFilteredList);
-  
+
     await AsyncStorage.setItem("lockedApps", JSON.stringify(updatedLockedApps));
   };
-  
+
+  const removeLockedApp = async (appName) => {
+    const updatedLockedApps = lockedApps.filter((app) => app !== appName);
+    setLockedApps(updatedLockedApps);
+
+    await AsyncStorage.setItem("lockedApps", JSON.stringify(updatedLockedApps));
+  };
 
   const filteredAppList =
     searchQuery === ""

@@ -17,7 +17,6 @@ function CheckEmail() {
 
   return (
     <View style={styles.loginContainer}>
-      {/* Animation */}
       <Animation />
       <View style={styles.contentContainer}>
       <Header>Your email will soon arrive</Header>
@@ -52,7 +51,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonsContainer: {
-    // flex: 1,
     flexDirection: "row",
   },
   buttonContainer: {

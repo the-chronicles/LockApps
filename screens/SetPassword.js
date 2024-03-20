@@ -30,85 +30,66 @@ function SetPassword() {
     navigation.navigate("ResetConfirmPass");
   }
 
-  //   const _onSendPressed = () => {
-  //     const emailError = emailValidator(email.value);
-  //     const passwordError = passwordValidator(password.value);
-
-  //     if (emailError || passwordError) {
-  //       setEmail({ ...email, error: emailError });
-  //       setPassword({ ...password, error: passwordError });
-  //       return;
-  //     }
-
-  //     navigation.navigate("ResetConfirmPass");
-  //   };
-
   return (
     <>
-      <View style={styles.loginContainer}>
-        <View>
-          <Image source={require("../assets/lock.png")} />
-          <Header>Set your password</Header>
-          <SubText style={styles.subText}>
-            Please create your new account password for Bress
-          </SubText>
-        </View>
+      <View style={styles.container}>
+        <View style={styles.loginContainer}>
+          <View>
+            <Image source={require("../assets/lock.png")} />
+            <Header>Set your password</Header>
+            <SubText style={styles.subText}>
+              Please create your new account password for Bress
+            </SubText>
+          </View>
 
-        <View style={styles.inputContainer}>
-          <View style={styles.passwordContainer}>
-            <TextInput
-              style={styles.inputText}
-              placeholder="Password"
-              returnKeyType="next"
-              value={password.value}
-              onChangeText={(text) => setPassword({ value: text, error: "" })}
-              error={!!password.error}
-              errorText={password.error}
-              secureTextEntry={!passwordVisible}
-            />
-            <TouchableOpacity
-              style={styles.eyeIcon}
-              onPress={togglePasswordVisibility}
-            >
-              <MaterialIcons
-                name={passwordVisible ? "visibility-off" : "visibility"}
-                size={24}
-                color="black"
+          <View style={styles.inputContainer}>
+            <View style={styles.passwordContainer}>
+              <TextInput
+                style={styles.inputText}
+                placeholder="Password"
+                returnKeyType="next"
+                value={password.value}
+                onChangeText={(text) => setPassword({ value: text, error: "" })}
+                error={!!password.error}
+                errorText={password.error}
+                secureTextEntry={!passwordVisible}
               />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.passwordContainer}>
-            <TextInput
-              style={styles.inputText}
-              placeholder="Retype Password"
-              returnKeyType="done"
-              value={password.value}
-              onChangeText={(text) => setPassword({ value: text, error: "" })}
-              error={!!password.error}
-              errorText={password.error}
-              secureTextEntry={!passwordVisible}
-            />
-            <TouchableOpacity
-              style={styles.eyeIcon}
-              onPress={togglePasswordVisibility}
-            >
-              <MaterialIcons
-                name={passwordVisible ? "visibility-off" : "visibility"}
-                size={24}
-                color="black"
+              <TouchableOpacity
+                style={styles.eyeIcon}
+                onPress={togglePasswordVisibility}
+              >
+                <MaterialIcons
+                  name={passwordVisible ? "visibility-off" : "visibility"}
+                  size={24}
+                  color="black"
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.passwordContainer}>
+              <TextInput
+                style={styles.inputText}
+                placeholder="Retype Password"
+                returnKeyType="done"
+                value={password.value}
+                onChangeText={(text) => setPassword({ value: text, error: "" })}
+                error={!!password.error}
+                errorText={password.error}
+                secureTextEntry={!passwordVisible}
               />
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.eyeIcon}
+                onPress={togglePasswordVisibility}
+              >
+                <MaterialIcons
+                  name={passwordVisible ? "visibility-off" : "visibility"}
+                  size={24}
+                  color="black"
+                />
+              </TouchableOpacity>
+            </View>
+            <PrimaryButton onPress={nextHandler}>Continue</PrimaryButton>
           </View>
-          {/* <View style={styles.buttonContainer}> */}
-          <PrimaryButton onPress={nextHandler}>Continue</PrimaryButton>
-          {/* </View> */}
         </View>
-
-        {/* <View style={styles.buttonsContainer}>
-          <View style={styles.buttonContainer}>
-            <PrimaryButton onPress={_onSendPressed}>Continue</PrimaryButton>
-          </View>
-        </View> */}
       </View>
     </>
   );
@@ -117,12 +98,13 @@ function SetPassword() {
 export default SetPassword;
 
 const styles = StyleSheet.create({
-  loginContainer: {
+  container: {
     flex: 1,
     backgroundColor: theme.colors.accent,
+  },
+  loginContainer: {
     padding: 20,
     marginTop: 70,
-    // justifyContent: 'center'
   },
   forgotPassword: {
     width: "100%",
