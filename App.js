@@ -29,6 +29,7 @@ import Unlocked from "./screens/Unlocked";
 import Locked from "./screens/Locked";
 import Accountsettings from "./screens/Accountsettings";
 import Applicationsettings from "./screens/Applicationsettings";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -52,18 +53,22 @@ function CustomDrawerContent(props) {
       </View>
 
       <View style={{ marginTop: 20, paddingLeft: 20 }}>
+        <TouchableOpacity>
+          <View style={{ flexDirection: "row", paddingVertical: 10 }}>
+            <MaterialCommunityIcons name="eye-remove" size={24} color="red" />
+            <Text style={{ paddingLeft: 10, fontSize: 16 }}>Remove Ads</Text>
+          </View>
+        </TouchableOpacity>
+          <TouchableOpacity>
         <View style={{ flexDirection: "row", paddingVertical: 10 }}>
-          <MaterialCommunityIcons name="eye-remove" size={24} color="red" />
-          <Text style={{ paddingLeft: 10, fontSize: 16 }}>Remove Ads</Text>
+            <MaterialCommunityIcons
+              name="help-circle"
+              size={24}
+              color="#04aa64"
+            />
+            <Text style={{ paddingLeft: 10, fontSize: 16 }}>Help</Text>
         </View>
-        <View style={{ flexDirection: "row", paddingVertical: 10 }}>
-          <MaterialCommunityIcons
-            name="help-circle"
-            size={24}
-            color="#04aa64"
-          />
-          <Text style={{ paddingLeft: 10, fontSize: 16 }}>Help</Text>
-        </View>
+          </TouchableOpacity>
       </View>
 
       <View
@@ -75,10 +80,13 @@ function CustomDrawerContent(props) {
       </View>
 
       <View style={{ marginTop: 30, paddingLeft: 20 }}>
+        <TouchableOpacity>
+          
         <View style={{ flexDirection: "row", paddingVertical: 10 }}>
           <MaterialCommunityIcons name="star" size={24} color="#666666" />
           <Text style={{ paddingLeft: 10, fontSize: 16 }}>Rate Us</Text>
         </View>
+        </TouchableOpacity>
         <View style={{ flexDirection: "row", paddingVertical: 10 }}>
           <Entypo name="share" size={24} color="#666666" />
           <Text style={{ paddingLeft: 10, fontSize: 16 }}>Share</Text>

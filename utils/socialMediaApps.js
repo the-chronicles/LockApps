@@ -16,7 +16,7 @@ export const SocialMediaApps = [
   },
   {
     id: 4,
-    name: "LinkedIn",
+    name: "LinkedIn!",
   },
   // Add more social media apps as needed
 ];
